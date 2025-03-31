@@ -26,19 +26,24 @@ class Block_Styles {
 	 * Block Styles constructor.
 	 */
 	public function __construct() {
+		// Initialisez $this->styles comme un tableau vide pour éviter les erreurs
+		$this->styles = array();
+		
+		// Notez les priorités différentes (9 et 10)
+		add_action('init', array($this, 'setup_styles'), 9); // Exécuter en premier
+		add_action('init', array($this, 'add_block_styles'), 10); // Exécuter ensuite
+	}
+	
+	public function setup_styles() {
 		$this->styles = array(
 			'core/categories' => array(
 				array(
 					'name'  => 'raft-pills',
-					'label' => esc_html__( 'Pills', 'raft' ),
+					'label' => esc_html__('Pills', 'raft'),
 				),
 			),
 		);
-
-		add_action( 'init', array( $this, 'add_block_styles' ) );
-
 	}
-
 	/**
 	 * Add the block styles.
 	 *

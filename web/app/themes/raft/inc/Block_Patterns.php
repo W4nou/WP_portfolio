@@ -58,6 +58,11 @@ class Block_Patterns {
 	 * @return void
 	 */
 	private function setup_properties() {
+		add_action("init",array($this,'init_properties'));
+	}
+
+
+	public function init_properties(){
 		$categories = array(
 			'raft/featured'           => array( 'label' => __( 'Featured', 'raft' ) ),
 			'raft/headers'            => array( 'label' => __( 'Headers', 'raft' ) ),
