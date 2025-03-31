@@ -1,62 +1,54 @@
-<p align="center">
-  <a href="https://roots.io/bedrock/">
-    <img alt="Bedrock" src="https://cdn.roots.io/app/uploads/logo-bedrock.svg" height="100">
-  </a>
-</p>
+# Lancer le projet
 
-<p align="center">
-  <a href="https://packagist.org/packages/roots/bedrock">
-    <img alt="Packagist Installs" src="https://img.shields.io/packagist/dt/roots/bedrock?label=projects%20created&colorB=2b3072&colorA=525ddc&style=flat-square">
-  </a>
+## Prérequis
+1. Assurez-vous d'avoir installé les outils suivants :
+  - PHP (version compatible avec le projet)
+  - Composer
+  - Un serveur web local (ex. : XAMPP, WAMP, ou Laravel Valet)
+  - MySQL ou un autre système de gestion de base de données compatible
 
-  <a href="https://packagist.org/packages/roots/wordpress">
-    <img alt="roots/wordpress Packagist Downloads" src="https://img.shields.io/packagist/dt/roots/wordpress?label=roots%2Fwordpress%20downloads&logo=roots&logoColor=white&colorB=2b3072&colorA=525ddc&style=flat-square">
-  </a>
-  
-  <img src="https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/roots/bedrock/master/composer.json&label=wordpress&logo=roots&logoColor=white&query=$.require[%22roots/wordpress%22]&colorB=2b3072&colorA=525ddc&style=flat-square">
+## Étapes pour lancer le projet
 
-  <a href="https://github.com/roots/bedrock/actions/workflows/ci.yml">
-    <img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/roots/bedrock/ci.yml?branch=master&logo=github&label=CI&style=flat-square">
-  </a>
+1. **Cloner le dépôt**  
+  Clonez le dépôt du projet sur votre machine locale :
+  ```bash
+  git clone <URL_DU_DEPOT>
+  cd <NOM_DU_DOSSIER>
+  ```
 
-  <a href="https://twitter.com/rootswp">
-    <img alt="Follow Roots" src="https://img.shields.io/badge/follow%20@rootswp-1da1f2?logo=twitter&logoColor=ffffff&message=&style=flat-square">
-  </a>
-</p>
+2. **Installer les dépendances**  
+  Exécutez la commande suivante pour installer les dépendances PHP définies dans `composer.json` :
+  ```bash
+  composer install
+  ```
+  **Note :** Certains thèmes comme Astra ou Raft mentionnés dans `composer.json` ne seront pas inclus.
 
-<p align="center">WordPress boilerplate with Composer, easier configuration, and an improved folder structure</p>
+3. **Importer la base de données**  
+  - Localisez le fichier d'export de la base de données (ex. : `database.sql`).
+  - Importez-le dans votre système de gestion de base de données :
+    ```bash
+    mysql -u <UTILISATEUR> -p <NOM_DE_LA_BDD> database.sql
+    ```
 
-<p align="center">
-  <a href="https://roots.io/bedrock/">Website</a> &nbsp;&nbsp; <a href="https://roots.io/bedrock/docs/installation/">Documentation</a> &nbsp;&nbsp; <a href="https://github.com/roots/bedrock/releases">Releases</a> &nbsp;&nbsp; <a href="https://discourse.roots.io/">Community</a>
-</p>
+4. **Configurer le fichier `.env`**  
+  Copiez le fichier `.env.example` en `.env` et configurez les paramètres suivants :
+  - Connexion à la base de données (`DB_HOST`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`).
+  - Autres paramètres spécifiques au projet.
 
-## Sponsors
+5. **Lancer le serveur local**  
+  Utilisez un serveur local pour exécuter le projet. Par exemple, avec PHP en tapan cette commande depuis la racine du projet:
+  ```bash
+  php -S localhost:8000 -t web
+  ```
 
-Bedrock is an open source project and completely free to use. If you've benefited from our projects and would like to support our future endeavors, please consider [sponsoring Roots](https://github.com/sponsors/roots).
+6. **Accéder au projet**  
+  Ouvrez votre navigateur et accédez à l'URL suivante :
+  ```
+  http://localhost:8000
+  ```
 
-<div align="center">
-<a href="https://carrot.com/"><img src="https://cdn.roots.io/app/uploads/carrot.svg" alt="Carrot" width="120" height="90"></a> <a href="https://wordpress.com/"><img src="https://cdn.roots.io/app/uploads/wordpress.svg" alt="WordPress.com" width="120" height="90"></a> <a href="https://worksitesafety.ca/careers/"><img src="https://cdn.roots.io/app/uploads/worksite-safety.svg" alt="Worksite Safety" width="120" height="90"></a> <a href="https://www.itineris.co.uk/"><img src="https://cdn.roots.io/app/uploads/itineris.svg" alt="Itineris" width="120" height="90"></a> <a href="https://bonsai.so/"><img src="https://cdn.roots.io/app/uploads/bonsai.svg" alt="Bonsai" width="120" height="90"></a> <a href="https://fusepress.co/sp/sign-up/"><img src="https://cdn.roots.io/app/uploads/fusepress.svg" alt="FusePress" width="120" height="90"></a>
-</div>
+# Réalisation et difficultés$
 
-## Overview
+J'ai rencontré plusieurs difficultés lors de la réalisation de ce projet. Initialement, j'avais choisi d'utiliser Raft car je trouvais son design attrayant. Cependant, j'ai rapidement découvert qu'il s'agissait d'un éditeur de site complet (FSE), ce qui a compliqué la réutilisation de composants via PHP. Face à ces obstacles, notamment des erreurs survenant avant même que je ne modifie quoi que ce soit ou ne crée un thème enfant, j'ai décidé de changer pour Astra à mi-parcours. Ce changement m'a fait perdre beaucoup de temps, mais Astra m'a permis de réaliser ce que je souhaitais.
 
-Bedrock is a WordPress boilerplate for developers that want to manage their projects with Git and Composer. Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](http://12factor.net/) methodology, including the [WordPress specific version](https://roots.io/twelve-factor-wordpress/).
-
-- Better folder structure
-- Dependency management with [Composer](https://getcomposer.org)
-- Easy WordPress configuration with environment specific files
-- Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
-- Autoloader for mu-plugins (use regular plugins as mu-plugins)
-- Enhanced security (separated web root and secure passwords with [wp-password-bcrypt](https://github.com/roots/wp-password-bcrypt))
-
-## Getting Started
-
-See the [Bedrock installation documentation](https://roots.io/bedrock/docs/installation/).
-
-## Stay Connected
-
-- Join us on Discord by [sponsoring us on GitHub](https://github.com/sponsors/roots)
-- Participate on [Roots Discourse](https://discourse.roots.io/)
-- Follow [@rootswp on Twitter](https://twitter.com/rootswp)
-- Read the [Roots Blog](https://roots.io/blog/)
-- Subscribe to the [Roots Newsletter](https://roots.io/newsletter/)
+Par manque de temps, je n'ai pu intégrer que le strict minimum pour les éléments du portfolio, en ajoutant une description pour les afficher. J'ai également eu des difficultés à afficher les trois articles mis en avant sur la page d'accueil, car celle-ci avait été réalisée avec Gutenberg. Finalement, j'ai résolu ce problème en créant un modèle spécifique et en l'appliquant à la page d'accueil pour faire apparaître les articles comme prévu.
